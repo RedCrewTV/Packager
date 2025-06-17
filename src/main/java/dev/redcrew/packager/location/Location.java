@@ -28,6 +28,10 @@ public final class Location {
         this.namespace = Namespace.DEFAULT;
     }
 
+    public String toPath() {
+        return "assets/" + namespace + "/" + path;
+    }
+
     @Override
     public String toString() {
         return namespace + ":" + path;

@@ -3,6 +3,9 @@ package dev.redcrew.packager;
 import dev.redcrew.packager.asset.Texture;
 import dev.redcrew.packager.location.Path;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 /**
@@ -18,7 +21,7 @@ import java.util.Objects;
  */
 public class Demo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         ResourcePack pack = new ResourcePack.Builder("Test Resource Pack", MinecraftVersion.v1_21_5)
                 .setDescription("A useless Description")
@@ -26,6 +29,10 @@ public class Demo {
                         "apple",
                         Objects.requireNonNull(Demo.class.getResourceAsStream("apple.png"))))
                 .build();
+
+        ResourcePackWriter writer = new ResourcePackWriter(pack);
+        writer.writeToDirectory(Paths.get("H:/Workspace/Intellij/Packager/Demo"), true);
+        System.out.println("Done");
     }
 
 }
