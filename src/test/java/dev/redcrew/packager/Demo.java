@@ -1,6 +1,8 @@
 package dev.redcrew.packager;
 
 import dev.redcrew.packager.asset.Texture;
+import dev.redcrew.packager.asset.declaration.BasicDeclaration;
+import dev.redcrew.packager.asset.model.ItemModel;
 import dev.redcrew.packager.location.Location;
 import dev.redcrew.packager.location.Path;
 import dev.redcrew.packager.reader.model.ItemModelReader;
@@ -24,6 +26,9 @@ public class Demo {
 
     public static void main(String[] args) throws IOException {
 
+        ItemModel catchnet = new ItemModelReader(new Location(Path.MODELS.extend(Path.ITEM)), "catchnet")
+                .read(Objects.requireNonNull(Demo.class.getResourceAsStream("qitem_catchnet.json")));
+
         ResourcePack pack = new ResourcePack.Builder("Test Resource Pack", MinecraftVersion.v1_21_5)
                 .setDescription("A useless Description")
                 //Adding a custom Apple Texture
@@ -34,8 +39,8 @@ public class Demo {
                 .addTexture(new Texture(Path.TEXTURES.extend(Path.ITEM),
                         "catchnet",
                         Objects.requireNonNull(Demo.class.getResourceAsStream("qitem_catchnet.png"))))
-                .addModel(new ItemModelReader(new Location(Path.MODELS.extend(Path.ITEM)), "catchnet")
-                        .read(Objects.requireNonNull(Demo.class.getResourceAsStream("qitem_catchnet.json"))))
+                .addModel(catchnet)
+                .addDeclaration(new BasicDeclaration(catchnet))
                 //Build
                 .build();
 

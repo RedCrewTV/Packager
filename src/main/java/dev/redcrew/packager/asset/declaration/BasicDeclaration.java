@@ -21,14 +21,17 @@ import org.jetbrains.annotations.NotNull;
 public class BasicDeclaration extends Declaration {
 
     private final @NotNull Location modelLocation;
+    private final @NotNull String modelName;
 
-    public BasicDeclaration(@NotNull Location location, @NotNull String name, @NotNull Location modelLocation) {
+    public BasicDeclaration(@NotNull Location location, @NotNull String name, @NotNull Location modelLocation, @NotNull String modelName) {
         super(location, name);
         this.modelLocation = modelLocation;
+        this.modelName = modelName;
     }
 
     public BasicDeclaration(@NotNull ItemModel model) {
         super(new Location(model.getLocation().getNamespace(), Path.ITEMS), model.getName());
-        this.modelLocation = model.getLocation();
+        this.modelLocation = new Location(model.getLocation().getNamespace(), Path.of(model.getLocation().getPath().toString().replace("models/", "")));
+        this.modelName = model.getName();
     }
 }

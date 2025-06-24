@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This file is a JavaDoc!
@@ -33,7 +36,7 @@ public class BasicDeclarationTypeAdapter extends TypeAdapter<BasicDeclaration> {
         writer.name("model").beginObject();
 
         writer.name("type").value("minecraft:model");
-        writer.name("model").value(declaration.getModelLocation().toString());
+        writer.name("model").value(declaration.getModelLocation() + "/" + declaration.getModelName());
 
         writer.endObject();
         writer.endObject();
@@ -42,15 +45,18 @@ public class BasicDeclarationTypeAdapter extends TypeAdapter<BasicDeclaration> {
     @Override
     public BasicDeclaration read(JsonReader reader) throws IOException {
         Location modelLocation = null;
+        String modelName = null;
         reader.beginObject();
 
         while (reader.hasNext()) {
             if(reader.nextName().equals("model")) {
-                modelLocation = Location.fromRawData(reader.nextString());
+                String rawData = reader.nextString();
+                modelName = Arrays.stream(rawData.split("/")).toList().getLast();
+                modelLocation = Location.fromRawData(rawData.replace("/" + modelName, ""));
             } else reader.skipValue();
         }
 
         reader.endObject();
-        return new BasicDeclaration(location, name, modelLocation);
+        return new BasicDeclaration(location, name, modelLocation, modelName);
     }
 }

@@ -28,7 +28,7 @@ public class TextureWriter extends AssetWriter<Texture> {
     }
 
     @Override
-    public void writeAsset(@NotNull Path rootDir, boolean overwrite) throws IOException {
+    protected void writeAsset(@NotNull Path rootDir, boolean overwrite) throws IOException {
         File file = new File(Path.of(rootDir.toString(), getAsset().getLocation().toPath(), getAsset().getName() + ".png").toString());
         WriterUtil.createFile(file, overwrite);
 

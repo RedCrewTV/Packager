@@ -31,7 +31,7 @@ public class BlockModelWriter extends ModelWriter<BlockModel> {
     }
 
     @Override
-    public void writeModel(@NotNull File modelFile, boolean overwrite) throws IOException {
+    protected void writeModel(@NotNull File modelFile, boolean overwrite) throws IOException {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(BlockModel.class, new BlockModelTypeAdapter(getAsset().getLocation(), getAsset().getName()))
                 .setPrettyPrinting()

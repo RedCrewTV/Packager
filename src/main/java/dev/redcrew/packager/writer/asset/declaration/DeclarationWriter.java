@@ -27,12 +27,12 @@ public abstract class DeclarationWriter<T extends Declaration> extends AssetWrit
     }
 
     @Override
-    public void writeAsset(@NotNull Path rootDir, boolean overwrite) throws IOException {
+    protected void writeAsset(@NotNull Path rootDir, boolean overwrite) throws IOException {
         File file = new File(Path.of(rootDir.toString(), getAsset().getLocation().toPath(), getAsset().getName() + ".json").toString());
         WriterUtil.createFile(file, overwrite);
 
         writeDeclaration(file, overwrite);
     }
 
-    public abstract void writeDeclaration(@NotNull File file, boolean overwrite) throws IOException;
+    protected abstract void writeDeclaration(@NotNull File file, boolean overwrite) throws IOException;
 }

@@ -27,12 +27,12 @@ public abstract class ModelWriter<T extends Model> extends AssetWriter<T> {
     }
 
     @Override
-    public void writeAsset(@NotNull Path rootDir, boolean overwrite) throws IOException {
+    protected void writeAsset(@NotNull Path rootDir, boolean overwrite) throws IOException {
         File file = new File(Path.of(rootDir.toString(), getAsset().getLocation().toPath(), getAsset().getName() + ".json").toString());
         WriterUtil.createFile(file, overwrite);
 
         writeModel(file, overwrite);
     }
 
-    public abstract void writeModel(@NotNull File modelFile, boolean overwrite) throws IOException;
+    protected abstract void writeModel(@NotNull File modelFile, boolean overwrite) throws IOException;
 }

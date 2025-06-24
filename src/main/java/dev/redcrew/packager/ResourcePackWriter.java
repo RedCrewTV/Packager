@@ -1,9 +1,12 @@
 package dev.redcrew.packager;
 
 import dev.redcrew.packager.asset.Texture;
+import dev.redcrew.packager.asset.declaration.BasicDeclaration;
+import dev.redcrew.packager.asset.declaration.Declaration;
 import dev.redcrew.packager.asset.model.BlockModel;
 import dev.redcrew.packager.asset.model.ItemModel;
 import dev.redcrew.packager.asset.model.Model;
+import dev.redcrew.packager.writer.asset.declaration.BasicDeclarationWriter;
 import dev.redcrew.packager.writer.asset.model.BlockModelWriter;
 import dev.redcrew.packager.writer.asset.model.ItemModelWriter;
 import dev.redcrew.packager.writer.McMetaWriter;
@@ -58,7 +61,14 @@ public final class ResourcePackWriter {
             }
         }
 
-        //todo declaration
+        //Create Declarations
+        for (Declaration declaration : resourcePack.getDeclarations()) {
+            if(declaration instanceof BasicDeclaration bd) {
+                new BasicDeclarationWriter(bd).write(directory, overwrite);
+            } else {
+                throw new IllegalArgumentException("Unknown declaration: " + declaration.getClass());
+            }
+        }
 
     }
 

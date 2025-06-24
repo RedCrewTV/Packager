@@ -33,6 +33,6 @@ public abstract class AssetWriter<T extends Asset> implements Writeable {
         writeAsset(rootDir, overwrite);
     }
 
-    public abstract void writeAsset(@NotNull Path rootDir, boolean overwrite) throws IOException;
+    protected abstract void writeAsset(@NotNull Path rootDir, boolean overwrite) throws IOException;
 
 }

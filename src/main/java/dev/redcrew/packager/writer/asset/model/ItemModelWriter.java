@@ -29,7 +29,7 @@ public class ItemModelWriter extends ModelWriter<ItemModel> {
     }
 
     @Override
-    public void writeModel(@NotNull File modelFile, boolean overwrite) throws IOException {
+    protected void writeModel(@NotNull File modelFile, boolean overwrite) throws IOException {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(ItemModel.class, new ItemModelTypeAdapter(getAsset().getLocation(), getAsset().getName()))
                 .setPrettyPrinting()

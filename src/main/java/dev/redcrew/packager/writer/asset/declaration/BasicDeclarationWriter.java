@@ -31,7 +31,7 @@ public class BasicDeclarationWriter extends DeclarationWriter<BasicDeclaration> 
     }
 
     @Override
-    public void writeDeclaration(@NotNull File file, boolean overwrite) throws IOException {
+    protected void writeDeclaration(@NotNull File file, boolean overwrite) throws IOException {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(BasicDeclaration.class, new BasicDeclarationTypeAdapter(getAsset().getLocation(), getAsset().getName()))
                 .setPrettyPrinting()
