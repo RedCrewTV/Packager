@@ -1,4 +1,4 @@
-package dev.redcrew.packager.reader;
+package dev.redcrew.packager.reader.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -9,7 +9,6 @@ import dev.redcrew.packager.location.Location;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;

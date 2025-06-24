@@ -1,13 +1,11 @@
-package dev.redcrew.packager.writer;
+package dev.redcrew.packager.writer.asset;
 
 import dev.redcrew.packager.asset.Texture;
-import lombok.RequiredArgsConstructor;
+import dev.redcrew.packager.writer.WriterUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;

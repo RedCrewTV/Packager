@@ -25,6 +25,8 @@ public final class Path {
     public final static Path BLOCK = new Path("block");
     public final static Path ITEM = new Path("item");
 
+    public final static Path ITEMS = new Path("items");
+
     private final @NotNull String path;
 
     /**

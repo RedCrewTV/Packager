@@ -18,7 +18,7 @@ import java.nio.file.Files;
  * Discord: redcrew <p>
  * Website: <a href="https://redcrew.dev/">https://redcrew.dev/</a>
  */
-final class WriterUtil {
+public final class WriterUtil {
 
     private WriterUtil() {}
 

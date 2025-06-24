@@ -1,9 +1,10 @@
-package dev.redcrew.packager.writer;
+package dev.redcrew.packager.writer.asset.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dev.redcrew.packager.asset.Asset;
+import dev.redcrew.packager.asset.model.BlockModel;
 import dev.redcrew.packager.asset.model.ItemModel;
+import dev.redcrew.packager.asset.model.adapter.BlockModelTypeAdapter;
 import dev.redcrew.packager.asset.model.adapter.ItemModelTypeAdapter;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,7 +12,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 
 /**
  * This file is a JavaDoc!
@@ -24,25 +24,21 @@ import java.nio.file.Path;
  * Discord: redcrew <p>
  * Website: <a href="https://redcrew.dev/">https://redcrew.dev/</a>
  */
-public class ItemModelWriter extends AssetWriter<ItemModel> {
+public class BlockModelWriter extends ModelWriter<BlockModel> {
 
-    public ItemModelWriter(@NotNull ItemModel model) {
+    public BlockModelWriter(@NotNull BlockModel model) {
         super(model);
     }
 
     @Override
-    public void writeAsset(@NotNull Path rootDir, boolean overwrite) throws IOException {
-        File file = new File(Path.of(rootDir.toString(), getAsset().getLocation().toPath(), getAsset().getName() + ".json").toString());
-        WriterUtil.createFile(file, overwrite);
-
+    public void writeModel(@NotNull File modelFile, boolean overwrite) throws IOException {
         Gson gson = new GsonBuilder()
-                .registerTypeAdapter(ItemModel.class, new ItemModelTypeAdapter(getAsset().getLocation(), getAsset().getName()))
+                .registerTypeAdapter(BlockModel.class, new BlockModelTypeAdapter(getAsset().getLocation(), getAsset().getName()))
                 .setPrettyPrinting()
                 .create();
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(modelFile))) {
             gson.toJson(getAsset(), writer);
         }
-
     }
 }

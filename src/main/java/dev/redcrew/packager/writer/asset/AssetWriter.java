@@ -1,6 +1,7 @@
-package dev.redcrew.packager.writer;
+package dev.redcrew.packager.writer.asset;
 
 import dev.redcrew.packager.asset.Asset;
+import dev.redcrew.packager.writer.Writeable;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;

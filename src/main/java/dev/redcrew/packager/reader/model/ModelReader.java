@@ -1,10 +1,7 @@
-package dev.redcrew.packager.reader;
+package dev.redcrew.packager.reader.model;
 
 import dev.redcrew.packager.asset.model.Model;
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.io.InputStream;
+import dev.redcrew.packager.reader.Readable;
 
 /**
  * This file is a JavaDoc!

@@ -1,12 +1,10 @@
 package dev.redcrew.packager;
 
 import dev.redcrew.packager.asset.Texture;
-import dev.redcrew.packager.asset.model.ItemModel;
 import dev.redcrew.packager.location.Location;
 import dev.redcrew.packager.location.Path;
-import dev.redcrew.packager.reader.ItemModelReader;
+import dev.redcrew.packager.reader.model.ItemModelReader;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Objects;
