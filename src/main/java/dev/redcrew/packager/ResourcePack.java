@@ -62,6 +62,8 @@ public final class ResourcePack {
             return this;
         }
 
+        //todo add declaration
+
         public ResourcePack build() {
             return new ResourcePack(name, version, description, textures, models);
         }

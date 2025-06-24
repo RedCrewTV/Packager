@@ -152,7 +152,7 @@ public abstract class BaseModelTypeAdapter<T extends Model, V> extends TypeAdapt
                     while (reader.hasNext()) {
                         String name = reader.nextName();
                         String value = reader.nextString();
-                        tex.addTexture(name, new Location(Namespace.of(value.split(":")[0]), Path.of(value.split(":")[1])));
+                        tex.addTexture(name, Location.fromRawData(value));
                     }
 
                     reader.endObject();

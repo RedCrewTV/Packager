@@ -1,6 +1,8 @@
 package dev.redcrew.packager.asset.declaration;
 
+import dev.redcrew.packager.asset.Asset;
 import dev.redcrew.packager.location.Location;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
@@ -16,11 +18,10 @@ import org.jetbrains.annotations.NotNull;
  * Discord: redcrew <p>
  * Website: <a href="https://redcrew.dev/">https://redcrew.dev/</a>
  */
-@RequiredArgsConstructor
-@Getter
-public abstract class Declaration {
+public abstract class Declaration extends Asset {
 
-    private final @NotNull String name;
-    private final @NotNull Location location;
+    public Declaration(@NotNull Location location, @NotNull String name) {
+        super(location, name);
+    }
 
 }

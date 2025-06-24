@@ -58,6 +58,7 @@ public final class ResourcePackWriter {
             }
         }
 
+        //todo declaration
 
     }
 

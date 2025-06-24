@@ -36,4 +36,8 @@ public final class Location {
     public String toString() {
         return namespace + ":" + path;
     }
+
+    public static Location fromRawData(@NotNull String raw) {
+        return new Location(Namespace.of(raw.split(":")[0]), Path.of(raw.split(":")[1]));
+    }
 }
