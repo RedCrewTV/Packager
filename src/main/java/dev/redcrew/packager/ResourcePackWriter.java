@@ -1,6 +1,13 @@
 package dev.redcrew.packager;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import dev.redcrew.packager.asset.Texture;
+import dev.redcrew.packager.asset.model.BlockModel;
+import dev.redcrew.packager.asset.model.ItemModel;
+import dev.redcrew.packager.asset.model.Model;
+import dev.redcrew.packager.asset.model.adapter.ItemModelTypeAdapter;
+import dev.redcrew.packager.writer.ItemModelWriter;
 import dev.redcrew.packager.writer.McMetaWriter;
 import dev.redcrew.packager.writer.TextureWriter;
 import lombok.AllArgsConstructor;
@@ -41,6 +48,17 @@ public final class ResourcePackWriter {
         //Create Textures
         for (Texture texture : resourcePack.getTextures()) {
             new TextureWriter(texture).write(directory, overwrite);
+        }
+
+        //Create Models
+        for (Model model : resourcePack.getModels()) {
+            if(model instanceof ItemModel im) {
+                new ItemModelWriter(im).write(directory, overwrite);
+            } else if (model instanceof BlockModel bm) {
+                //todo BlockModel Writer
+            } else {
+                throw new IllegalArgumentException("Unknown model type: " + model.getClass());
+            }
         }
 
 

@@ -1,7 +1,10 @@
 package dev.redcrew.packager;
 
 import dev.redcrew.packager.asset.Texture;
+import dev.redcrew.packager.asset.model.ItemModel;
+import dev.redcrew.packager.location.Location;
 import dev.redcrew.packager.location.Path;
+import dev.redcrew.packager.reader.ItemModelReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,9 +28,17 @@ public class Demo {
 
         ResourcePack pack = new ResourcePack.Builder("Test Resource Pack", MinecraftVersion.v1_21_5)
                 .setDescription("A useless Description")
+                //Adding a custom Apple Texture
                 .addTexture(new Texture(Path.TEXTURES.extend(Path.ITEM),
                         "apple",
                         Objects.requireNonNull(Demo.class.getResourceAsStream("apple.png"))))
+                //Adding a Catchnet as Model
+                .addTexture(new Texture(Path.TEXTURES.extend(Path.ITEM),
+                        "catchnet",
+                        Objects.requireNonNull(Demo.class.getResourceAsStream("qitem_catchnet.png"))))
+                .addModel(new ItemModelReader(new Location(Path.MODELS.extend(Path.ITEM)), "catchnet")
+                        .read(Objects.requireNonNull(Demo.class.getResourceAsStream("qitem_catchnet.json"))))
+                //Build
                 .build();
 
         ResourcePackWriter writer = new ResourcePackWriter(pack);

@@ -20,45 +20,45 @@ import org.jetbrains.annotations.NotNull;
 public record Element(@NotNull Position from, @NotNull Position to,
                       @NotNull Rotation rotation, @NotNull Faces faces) {
 
-    private record Faces(@NotNull Face down,
+    public record Faces(@NotNull Face down,
                          @NotNull Face up,
-                         Face north,
+                         @NotNull Face north,
                          @NotNull Face south,
                          @NotNull Face west,
                          @NotNull Face east) {
 
-        private record Face(@NotNull UV uv, @NotNull String texture) {
+        public record Face(@NotNull UV uv, @NotNull String texture) {
 
             @Getter
-            private static class UV {
-                private int x1;
-                private int y1;
-                private int x2;
-                private int y2;
+            public static class UV {
+                private float x1;
+                private float y1;
+                private float x2;
+                private float y2;
 
-                public UV(int x1, int y1, int x2, int y2) {
+                public UV(float x1, float y1, float x2, float y2) {
                     setX1(x1);
                     setY1(y1);
                     setX2(x2);
                     setY2(y2);
                 }
 
-                public void setX1(int x1) {
+                public void setX1(float x1) {
                     if (x1 < 0 || x1 > 16) throw new IllegalArgumentException("x1 must be between 0 and 16");
                     this.x1 = x1;
                 }
 
-                public void setY1(int y1) {
+                public void setY1(float y1) {
                     if (y1 < 0 || y1 > 16) throw new IllegalArgumentException("y1 must be between 0 and 16");
                     this.y1 = y1;
                 }
 
-                public void setX2(int x2) {
+                public void setX2(float x2) {
                     if (x2 < 0 || x2 > 16) throw new IllegalArgumentException("x2 must be between 0 and 16");
                     this.x2 = x2;
                 }
 
-                public void setY2(int y2) {
+                public void setY2(float y2) {
                     if (y2 < 0 || y2 > 16) throw new IllegalArgumentException("y2 must be between 0 and 16");
                     this.y2 = y2;
                 }
@@ -67,20 +67,20 @@ public record Element(@NotNull Position from, @NotNull Position to,
         }
     }
 
-    private record Rotation(@NotNull Origin origin, @NotNull Axis axis, float angle, boolean rescale) {
+    public record Rotation(@NotNull Origin origin, @NotNull Axis axis, float angle, boolean rescale) {
 
-        private Rotation {
+        public Rotation {
             if (angle < -45 || angle > 45 || (angle % 22.5) != 0) throw new IllegalArgumentException("angle must be 45 through -45 degrees in 22.5 degree increments.");
         }
 
-        private enum Axis {
+        public enum Axis {
             X, Y, Z
         }
 
         @Getter
         @Setter
         @AllArgsConstructor
-        private static class Origin {
+        public static class Origin {
             private float x;
             private float y;
             private float z;
@@ -89,7 +89,7 @@ public record Element(@NotNull Position from, @NotNull Position to,
     }
 
     @Getter
-    private static class Position {
+    public static class Position {
         private float x;
         private float y;
         private float z;

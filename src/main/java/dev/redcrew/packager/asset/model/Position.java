@@ -20,14 +20,14 @@ public record Position(Rotation rotation, Translation translation, Scale scale) 
     @Getter
     @Setter
     @AllArgsConstructor
-    private static class Rotation {
+    public static class Rotation {
         private float x;
         private float y;
         private float z;
     }
 
     @Getter
-    private static class Translation {
+    public static class Translation {
         private float x;
         private float y;
         private float z;
@@ -55,7 +55,7 @@ public record Position(Rotation rotation, Translation translation, Scale scale) 
     }
 
     @Getter
-    private static class Scale {
+    public static class Scale {
         private float x;
         private float y;
         private float z;

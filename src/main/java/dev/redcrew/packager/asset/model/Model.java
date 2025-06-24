@@ -44,17 +44,17 @@ public abstract class Model extends Asset {
     }
 
     public static class Textures {
-        private final Map<String, Path> textures = new HashMap<>();
+        private final Map<String, Location> textures = new HashMap<>();
 
-        public void addTexture(@NotNull String var, @NotNull Path path) {
-            textures.put(var, path);
+        public void addTexture(@NotNull String var, @NotNull Location location) {
+            textures.put(var, location);
         }
 
-        public void addParticle(@NotNull Path path) {
-            textures.put("particle", path);
+        public void addParticle(@NotNull Location location) {
+            textures.put("particle", location);
         }
 
-        public Map<String, Path> getTextures() {
+        public Map<String, Location> getTextures() {
             return Collections.unmodifiableMap(textures);
         }
     }
