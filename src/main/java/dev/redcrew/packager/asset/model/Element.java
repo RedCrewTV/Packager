@@ -30,6 +30,7 @@ public record Element(@NotNull Position from, @NotNull Position to,
         public record Face(@NotNull UV uv, @NotNull String texture) {
 
             @Getter
+            @Setter
             public static class UV {
                 private float x1;
                 private float y1;
@@ -43,13 +44,13 @@ public record Element(@NotNull Position from, @NotNull Position to,
                     setY2(y2);
                 }
 
-                public void setX1(float x1) {
+                /*public void setX1(float x1) {
                     if (x1 < 0 || x1 > 16) throw new IllegalArgumentException("x1 must be between 0 and 16");
                     this.x1 = x1;
                 }
 
                 public void setY1(float y1) {
-                    if (y1 < 0 || y1 > 16) throw new IllegalArgumentException("y1 must be between 0 and 16");
+                    //if (y1 < 0 || y1 > 16) throw new IllegalArgumentException("y1 must be between 0 and 16");
                     this.y1 = y1;
                 }
 
@@ -61,7 +62,7 @@ public record Element(@NotNull Position from, @NotNull Position to,
                 public void setY2(float y2) {
                     if (y2 < 0 || y2 > 16) throw new IllegalArgumentException("y2 must be between 0 and 16");
                     this.y2 = y2;
-                }
+                }*/
             }
 
         }
