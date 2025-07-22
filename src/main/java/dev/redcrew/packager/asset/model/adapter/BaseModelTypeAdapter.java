@@ -3,6 +3,7 @@ package dev.redcrew.packager.asset.model.adapter;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import dev.redcrew.packager.Pair;
 import dev.redcrew.packager.asset.model.*;
 import dev.redcrew.packager.location.Location;
 import dev.redcrew.packager.location.Namespace;
@@ -13,10 +14,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.BiConsumer;
 
 /**
@@ -58,8 +56,8 @@ public abstract class BaseModelTypeAdapter<T extends Model, V> extends TypeAdapt
         //Textures
         if (model.getTextures() != null) {
             writer.name("textures").beginObject();
-            for (Map.Entry<String, Location> entry : model.getTextures().getTextures().entrySet()) {
-                writer.name(entry.getKey()).value(entry.getValue().toString());
+            for (Map.Entry<String, Pair<Location, String>> entry : model.getTextures().getTextures().entrySet()) {
+                writer.name(entry.getKey()).value(entry.getValue().getFirst() + "/" + entry.getValue().getSecond());
             }
             writer.endObject();
         }
@@ -152,7 +150,8 @@ public abstract class BaseModelTypeAdapter<T extends Model, V> extends TypeAdapt
                     while (reader.hasNext()) {
                         String name = reader.nextName();
                         String value = reader.nextString();
-                        tex.addTexture(name, Location.fromRawData(value));
+                        String texture = Arrays.asList(value.split("/")).getLast();
+                        tex.addTexture(name, Location.fromRawData(value.replace("/" + texture, "")), texture.replace(".png", ""));
                     }
 
                     reader.endObject();

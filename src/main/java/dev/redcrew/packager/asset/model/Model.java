@@ -1,10 +1,10 @@
 package dev.redcrew.packager.asset.model;
 
+import dev.redcrew.packager.Pair;
 import dev.redcrew.packager.asset.Asset;
 import dev.redcrew.packager.location.Location;
 import dev.redcrew.packager.location.Path;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -44,17 +44,17 @@ public abstract class Model extends Asset {
     }
 
     public static class Textures {
-        private final Map<String, Location> textures = new HashMap<>();
+        private final Map<String, Pair<Location, String>> textures = new HashMap<>();
 
-        public void addTexture(@NotNull String var, @NotNull Location location) {
-            textures.put(var, location);
+        public void addTexture(@NotNull String var, @NotNull Location location, @NotNull String name) {
+            textures.put(var, new Pair<>(location, name));
         }
 
-        public void addParticle(@NotNull Location location) {
-            textures.put("particle", location);
+        public void addParticle(@NotNull Location location, @NotNull String name) {
+            textures.put("particle", new Pair<>(location, name));
         }
 
-        public Map<String, Location> getTextures() {
+        public Map<String, Pair<Location, String>> getTextures() {
             return Collections.unmodifiableMap(textures);
         }
     }
