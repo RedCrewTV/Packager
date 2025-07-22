@@ -76,9 +76,6 @@ public class ItemModelBuilder extends Builder<ItemModel> {
     public @NotNull ItemModel build() {
         assert location != null;
         assert name != null;
-        assert parent != null;
-        assert display != null;
-        assert textures != null;
         assert guiLight != null;
         assert !elements.isEmpty();
 
